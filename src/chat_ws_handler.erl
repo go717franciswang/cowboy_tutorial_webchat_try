@@ -15,6 +15,7 @@ websocket_init(_TransportName, Req, _Opts) ->
     {ok, Req, undefined_state}.
 
 websocket_handle({text, Msg}, Req, State) ->
+    io:format("~p~n", [Msg]),
     chat_room:send_message(self(), Msg),
     {ok, Req, State};
 websocket_handle(_Data, Req, State) ->

@@ -32,21 +32,13 @@ send_message(Pid, Message) ->
 %%%=============================================================================
 
 init([]) ->
-    application:start(ranch),
-
     Dispatch = cowboy_router:compile([
         {'_', [
 
                {"/ws", chat_ws_handler, []},
-
-               {"/", cowboy_static,
-                [{directory, {priv_dir, chat, [<<"static">>]}},
-                 {file, <<"index.html">>},
-                 {mimetypes, {fun mimetypes:path_to_mimes/2, default}}]},
-
-               {"/static/[...]", cowboy_static,
-                [{directory, {priv_dir, chat, [<<"static">>]}},
-                 {mimetypes, {fun mimetypes:path_to_mimes/2, default}}]}
+               {"/", cowboy_static, {priv_file, chat, "static/index.html"}},
+               {"/static/[...]", cowboy_static, {priv_dir, chat, "static/",
+                    [{mimetypes, cow_mimetypes, all}]}}
 
               ]}
     ]),

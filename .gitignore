@@ -8,3 +8,5 @@ ebin
 rel/chat
 .concrete/DEV_MODE
 .rebar
+.erlang.mk
+_rel/

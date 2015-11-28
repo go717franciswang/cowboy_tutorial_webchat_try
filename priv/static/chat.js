@@ -10,7 +10,7 @@ function read_message_input() {
 
 function connect_to_chat() {
 
-    socket = new WebSocket("ws://localhost:8080/ws");
+    socket = new WebSocket("ws://"+location.hostname+":8080/ws");
 
     socket.onopen = function() {
         add_message("Connected.")

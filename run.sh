@@ -1,4 +1,3 @@
 #!/bin/bash
 
-erl -boot start_sasl -pa ebin deps/*/ebin -run chat_app start 
-
+./_rel/chat_release/bin/chat_release console
